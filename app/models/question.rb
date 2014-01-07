@@ -1,5 +1,6 @@
 class Question < ActiveRecord::Base
-  attr_accessible :question
+	attr_accessible :question
 
-  validates_length_of :question, :minimum => 1, :maximum => 250
+	validates_length_of :question, :minimum => 1, :maximum => 250
+	validates :question, :uniqueness => true
 end
