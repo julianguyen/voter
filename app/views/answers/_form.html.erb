@@ -1,0 +1,19 @@
+<div class="notice">
+	<%=h flash[:notice]%>
+</div>
+
+<%= form_for(@answer) do |f| %>
+
+
+  <input type="hidden" id="answer_questionid" name="answer[questionid]" value="<%= @questionid %>">
+  <%= f.text_field :answer %>
+
+
+  <% if @type == "edit" %>
+    <%= f.submit "Update" %>
+  <% else %>
+    <%= f.submit "Add" %>
+  <% end %>
+   
+<% end %>
+

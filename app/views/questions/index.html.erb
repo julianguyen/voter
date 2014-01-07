@@ -1,0 +1,20 @@
+<h1>Welcome!</h1>
+
+<div class="notice">
+<%=h flash[:notice]%>
+</div>
+
+<p>
+	<%= link_to 'New Question', new_question_path %>
+</p>
+
+<table>
+<% @questions.each do |q| %>
+	<tr>
+		<td><%= q.question %></td>
+		<td><%= link_to 'Answers', answers_path(:questionid => q.id) %></td>
+		<td><%= link_to 'Edit Question', edit_question_path(:id => q.id, :type => "edit") %></td>
+		
+	</tr> 
+<% end %>
+</table>
