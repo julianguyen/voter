@@ -3,11 +3,18 @@ Feature: Add question
 
     Scenario: Creates a valid question
         Given I am on the Add Question page
-        When I create question with text "Sample Question?"
-        When I see message "Question was successfully created."
-		When an answer is created with the text "Random answer"
-		When the message received is "Answer was successfully created."
-		When I click on the Question page
-		When "Answers" is clicked and "Add an answer" is clicked
-		When an answer is created with the text "Random thing"
+        And I "Create" question with text "Sample Question?"
+        And I see message "Question was successfully created."
+		And an answer is created with the text "Random answer"
 		Then the message received is "Answer was successfully created."
+		
+		Given I click on the Question page
+		And "Answers" is clicked
+		And "Add an answer" is clicked
+		And an answer is created with the text "Random thing"
+		Then the message received is "Answer was successfully created."
+
+		And "All Questions" is clicked
+		And "Edit Question" is clicked
+		And I "Update" question with text "BLAH GAHH" 
+		Then the message received is "Question was successfully updated."
