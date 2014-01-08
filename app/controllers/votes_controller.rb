@@ -1,24 +1,33 @@
 class VotesController < ApplicationController
 
-	def edit
- 	  	 @questionid = params[:questionid]
-   		 @answer = Answer.find(params[:id])
+	def index
+		@questions = Question.all
+	end
+
+	def vote
+		@questionid = params[:questionid]
+		@answers = Answer.where(:questionid => @questionid).all 
   	end
 
+  	def voting
+  		@ans = params[:ans]
+  		@addcounter = Answer.where(:id => @ans).first.counter.to_i + 1
+  		@updateanswer = Answer.find(@ans)
 
- 	def update
- 		@type = params[:type]
-	    @answer = Answer.find(params[:id])
+  		respond_to do |format|
+	    	if @updateanswer.update_attributes(:counter => @addcounter)
+	        	format.html { redirect_to voted_votes_path(:questionid => @updateanswer.questionid), notice: 'You have voted.' }
+	        	format.json { head :no_content }
+	      	else
+	        	format.html { render action: "edit" }
+	        	format.json { render json: @updateanswer.errors, status: :unprocessable_entity }
+	      	end
+    	end
+  	end
 
-	    respond_to do |format|
-	      if @answer.update_attributes(params[:answer])
-	        format.html { redirect_to answers_path(:questionid => Answer.where(:id => params[:id]).first.questionid), notice: 'Answer was successfully updated.' }
-	        format.json { head :no_content }
-	      else
-	        format.html { render action: "edit" }
-	        format.json { render json: answers_path(:questionid => Answer.where(:id => params[:id]).first.questionid).errors, status: :unprocessable_entity }
-	      end
-	    end
-	 end
+  	def voted
+  		@questionid = params[:questionid]
+  		@answers = Answer.where(:questionid => @questionid).all
+  	end 
 
 end

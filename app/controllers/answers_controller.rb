@@ -72,6 +72,17 @@ class AnswersController < ApplicationController
 	    end
 	 end
 
+	def destroy
+	    @answer = Answer.find(params[:id])
+	    @questionid = @answer.questionid
+	    @answer.destroy
+	    
+	    respond_to do |format|
+	      format.html { redirect_to answers_path(:questionid => @questionid) }
+	      format.json { head :no_content }
+	    end
+  	end
+
 end
 
 

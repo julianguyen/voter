@@ -1,0 +1,14 @@
+<h1>Welcome!</h1>
+
+<div class="notice">
+	<%=h flash[:notice]%>
+</div>
+
+<table>
+	<% @questions.each do |q| %>
+		<tr>
+			<td><%= q.question %></td>
+			<td><%= link_to 'Vote', vote_votes_path(:questionid => q.id) %></td>
+		</tr> 
+	<% end %>
+</table>

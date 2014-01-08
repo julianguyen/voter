@@ -1,0 +1,10 @@
+<h1><%= Question.where(:id => @questionid).first.question %></h1>
+
+<%= form_tag voting_votes_path do %>
+ 
+	<% @answers.each do |a| %>
+		<input type="radio" name="ans" value="<%= a.id %>"><%= a.answer %><br />
+	<% end %> 
+
+	<%= submit_tag "Submit" %>
+<% end %>

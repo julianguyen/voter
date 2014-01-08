@@ -68,6 +68,21 @@ class QuestionsController < ApplicationController
 	    end
 	 end
 
+	def destroy
+	    @question = Question.find(params[:id])
+	    @answer = Answer.where(:questionid => @question).all
+
+	    @question.destroy
+	    @answer.each do |a|
+	    	a.destroy
+	    end
+	    
+	    respond_to do |format|
+	      format.html { redirect_to questions_path }
+	      format.json { head :no_content }
+	    end
+  	end
+
 end
 
 

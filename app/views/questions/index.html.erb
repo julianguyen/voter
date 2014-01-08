@@ -14,7 +14,7 @@
 		<td><%= q.question %></td>
 		<td><%= link_to 'Answers', answers_path(:questionid => q.id) %></td>
 		<td><%= link_to 'Edit Question', edit_question_path(:id => q.id, :type => "edit") %></td>
-		
+		<td><%= link_to 'Delete Q&A', q, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	</tr> 
 <% end %>
 </table>

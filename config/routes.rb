@@ -56,5 +56,12 @@ Voter::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  resources :questions, :answers, :votes
+  resources :questions, :answers
+
+  resources :votes, :only => [:index, :vote]
+  get 'votes/vote' => 'votes#vote', :as => :vote_votes
+  post 'votes/voting' => 'votes#voting', :as => :voting_votes
+  get 'votes/voted' => 'votes#voted', :as => :voted_votes
+
+  root :to => 'votes#index'
 end
