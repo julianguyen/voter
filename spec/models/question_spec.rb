@@ -27,5 +27,20 @@ describe Question do
 			Question.create(question: "a")
 			expect(Question.where(question: "a").count).to eq(1)
 		end
+		it "should be case insensitive" do
+			Question.create(question: "b")
+			Question.create(question: "B")
+			expect(Question.where(:question => "B").exists?).to eq(false)
+		end
+		it "should not have any leading whitespace" do
+			Question.create(question: "canada is")
+			Question.create(question: " canada is")
+			expect(Question.where(:question => " canada is").exists?).to eq(false)			
+		end
+		it "should not have any trailing whitespace" do
+			Question.create(question: "c")
+			Question.create(question: "c ")
+			expect(Question.where(:question => "c ").exists?).to eq(false)			
+		end
     end
 end

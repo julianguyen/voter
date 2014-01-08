@@ -21,7 +21,10 @@ class AnswersController < ApplicationController
     	@answer = Answer.new(params[:answer])
 
 	    respond_to do |format|
-	    	if @answer.answer == "" || @answer.answer.length > 250
+	    	if Answer.where(:answer => @answer.answer.strip).exists?
+    			format.html { redirect_to answers_path(:questionid => @answer.questionid), notice: "This answer already exists." }
+    			format.json { render json: @question.errors, status: :unprocessable_entity }
+	    	elsif @answer.answer == "" || @answer.answer.length > 250
 	    		format.html { redirect_to answers_path(:questionid => @answer.questionid), notice: 'This answer is not between 1-250 characters.'}
 		    	format.json { render json: @answer.errors, status: :unprocessable_entity }
 		    elsif Answer.where(:answer => @answer.answer).exists?

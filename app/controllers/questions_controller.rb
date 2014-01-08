@@ -14,10 +14,13 @@ class QuestionsController < ApplicationController
   	end
 
   	def create
-    @question = Question.new(params[:question])
+    	@question = Question.new(params[:question])
 
 	    respond_to do |format|
-	    	if @question.question == "" || @question.question == nil || @question.question.length < 0 || @question.question.length > 250
+	    	if Question.where(:question => @question.question.strip).exists?
+    			format.html { redirect_to questions_path, notice: "This question already exists." }
+    			format.json { render json: @question.errors, status: :unprocessable_entity }
+	    	elsif @question.question == "" || @question.question == nil || @question.question.length < 0 || @question.question.length > 250
 	    		format.html { redirect_to questions_path, notice: 'This question is not between 1-250 characters. ' + @question.question.to_s }
 		    	format.json { render json: @question.errors, status: :unprocessable_entity }
 		    elsif Question.where(:question => @question.question).exists?
