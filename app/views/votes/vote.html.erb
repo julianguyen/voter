@@ -1,5 +1,9 @@
 <h1><%= Question.where(:id => @questionid).first.question %></h1>
 
+<div class="notice">
+	<%=h flash[:notice]%>
+</div>
+
 <%= form_tag voting_votes_path do %>
  
 	<% @answers.each do |a| %>
