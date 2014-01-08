@@ -7,18 +7,24 @@ When(/^I create question with text "(.*?)"$/) do |question_text|
   click_button('Create')
 end
 
-Then(/^I see message "(.*?)"$/) do |message|
+When(/^I see message "(.*?)"$/) do |message|
   find(".notice").text.should ==  message
 end
 
-Given(/^I fill in "(.*?)" with (\d+)\-(\d+) characters$/) do |arg1, arg2, arg3|
-  pending # express the regexp above with the code you wish you had
+When(/^an answer is created with the text "(.*?)"$/) do |answer_text|
+  fill_in "answer_answer", :with => answer_text
+  click_button('Add')
 end
 
-When(/^I press "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Then(/^the message received is "(.*?)"$/) do |message|
+  find(".notice").text.should ==  message  
 end
 
-Then(/^the page should redirect to the "(.*?)" page with notice message "(.*?)"\.$/) do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+When(/^I click on the Question page$/) do
+  visit "/questions"
+end
+
+When(/^"(.*?)" is clicked and "(.*?)" is clicked$/) do |arg1, arg2|
+  click_link(arg1)
+  click_link(arg2)
 end
