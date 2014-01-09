@@ -16,27 +16,7 @@ class QuestionsController < ApplicationController
   	def create
     	@question = Question.new(params[:question])
 
-	    respond_to do |format|
-	    	if Question.where(:question => @question.question.strip).exists?
-    			format.html { redirect_to questions_path, notice: "This question already exists." }
-    			format.json { render json: @question.errors, status: :unprocessable_entity }
-	    	elsif @question.question == "" || @question.question == nil || @question.question.length < 0 || @question.question.length > 250
-	    		format.html { redirect_to questions_path, notice: 'This question is not between 1-250 characters. ' + @question.question.to_s }
-		    	format.json { render json: @question.errors, status: :unprocessable_entity }
-		    elsif Question.where(:question => @question.question).exists?
-		    	format.html { redirect_to questions_path, notice: 'This question already exists.'}
-		    	format.json { render json: @question.errors, status: :unprocessable_entity }
-	    	else 
-		      if @question.save
-
-		        format.html { redirect_to new_answer_path(:questionid => @question), notice: 'Question was successfully created.' }
-		        format.json { render json: @question, status: :created, location: @question }
-		      else
-		        format.html { render action: "new" }
-		        format.json { render json: @question.errors, status: :unprocessable_entity }
-		      end
-		    end 
-	    end
+    	createQA("question", @question, "")
 
  	 end
 

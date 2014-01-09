@@ -20,27 +20,7 @@ class AnswersController < ApplicationController
   		@questionid = params[:questionid]
     	@answer = Answer.new(params[:answer])
 
-	    respond_to do |format|
-	    	if Answer.where(:questionid => @questionid, :answer => @answer.answer.strip).exists?
-    			format.html { redirect_to answers_path(:questionid => @answer.questionid), notice: "This answer already exists." }
-    			format.json { render json: @question.errors, status: :unprocessable_entity }
-	    	elsif @answer.answer == "" || @answer.answer.length > 250
-	    		format.html { redirect_to answers_path(:questionid => @answer.questionid), notice: 'This answer is not between 1-250 characters.'}
-		    	format.json { render json: @answer.errors, status: :unprocessable_entity }
-		    elsif Answer.where(:questionid => @questionid, :answer => @answer.answer).exists?
-		    	format.html { redirect_to answers_path(:questionid => @answer.questionid), notice: 'This answer already exists.'}
-		    	format.json { render json: @answer.errors, status: :unprocessable_entity }
-		    else 
-		      if @answer.save
-		        format.html { redirect_to answers_path(:questionid => Answer.where(:id => @answer).first.questionid), notice: 'Answer was successfully created.' }
-		        format.json { render json: answers_path(:questionid => Answer.where(:id => @answer).first.questionid), status: :created, location: answers_path }
-		      else
-		        format.html { render action: "new" }
-		        format.json { render json: answers_path(:questionid => Answer.where(:id => @answer).first.questionid).errors, status: :unprocessable_entity }
-		      end
-		    end 
-	    end
-
+    	createQA("answer", @answer, @questionid)
  	 end
 
  	 def show
@@ -66,11 +46,11 @@ class AnswersController < ApplicationController
 
 	    respond_to do |format|
 	      if @answer.update_attributes(params[:answer])
-	        format.html { redirect_to answers_path(:questionid => Answer.where(:id => params[:id]).first.questionid), notice: 'Answer was successfully updated.' }
+	        format.html { redirect_to answers_path(:questionid => Answer.getAnswers(params[:id])), notice: 'Answer was successfully updated.' }
 	        format.json { head :no_content }
 	      else
 	        format.html { render action: "edit" }
-	        format.json { render json: answers_path(:questionid => Answer.where(:id => params[:id]).first.questionid).errors, status: :unprocessable_entity }
+	        format.json { render json: answers_path(:questionid => Answer.getAnswers(params[:id])).errors, status: :unprocessable_entity }
 	      end
 	    end
 	 end

@@ -5,7 +5,7 @@
 </div>
 
 <%= form_tag voting_votes_path do %>
- 
+ 	<input type="hidden" name="questionid" value="<%= @questionid %>">
 	<% @answers.each do |a| %>
 		<input type="radio" name="ans" value="<%= a.id %>" id="<%= a.answer %>"><%= a.answer %><br />
 	<% end %> 

@@ -20,3 +20,8 @@ Feature: Voting
 		And I modify the "Sample Question?" by clicking "Vote" in "Votes"
 		And I choose the vote "Random thing 1"
 		Then the message received is "You have voted."
+
+		Given I am on the Voting page
+		And I modify the "Sample Question?" by clicking "Vote" in "Votes"
+		And "Submit" button is clicked
+		Then the message received is "You have to vote for something..."

@@ -8,4 +8,8 @@ class Question < ActiveRecord::Base
   	def strip_blanks
     	self.question = self.question.strip
   	end
+
+  	def self.duplicateQuestions(q)
+  		return Question.where(:question => q.strip).exists? || Question.where(:question => q).exists?
+  	end
 end

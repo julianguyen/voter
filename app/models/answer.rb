@@ -8,4 +8,12 @@ class Answer < ActiveRecord::Base
     def strip_blanks
     	self.answer = self.answer.strip
   	end
+
+  	def self.duplicateAnswers(q,a)
+  		return Answer.where(:questionid => q, :answer => a.strip).exists? || Answer.where(:questionid => q, :answer => a).exists?
+  	end
+
+  	def self.getAnswers(a)
+  		return Answer.where(:id => a).first.questionid
+  	end
 end
