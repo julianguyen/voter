@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
   	def create
     	@question = Question.new(params[:question])
 
-    	createQA("question", @question, "")
+    	createQA("question", @question, "", @question.question)
 
  	 end
 

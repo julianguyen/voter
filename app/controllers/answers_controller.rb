@@ -20,7 +20,7 @@ class AnswersController < ApplicationController
   		@questionid = params[:questionid]
     	@answer = Answer.new(params[:answer])
 
-    	createQA("answer", @answer, @questionid)
+    	createQA("answer", @answer, @questionid, @answer.answer)
  	 end
 
  	 def show
