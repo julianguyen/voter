@@ -6,9 +6,11 @@
 
 <table>
 	<% @questions.each do |q| %>
-		<tr>
-			<td><%= q.question %></td>
-			<td><%= link_to 'Vote', vote_votes_path(:questionid => q.id) %></td>
+		<tr class="voteRow">
+			<td class="vote">
+				<%= q.question %>
+				<%= link_to 'Vote', vote_votes_path(:questionid => q.id), :class => "voting" %>
+			</td>
 		</tr> 
 	<% end %>
 </table>

@@ -34,3 +34,6 @@ Feature: Add/modify questions and answers
 
 		And I modify the "BLAH GAHH" by clicking "Delete Q&A" in "Questions"
 		Then the message received is "Question was successfully deleted."
+
+		And I modify the "Sample Question2?" by clicking "Delete Q&A" in "Questions"
+		Then the message received is "Question was successfully deleted."
