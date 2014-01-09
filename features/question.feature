@@ -15,6 +15,9 @@ Feature: Add question
 		Then the message received is "Answer was successfully created."
 
 		And "All Questions" is clicked
-		And "Edit Question" is clicked
+		And I edit the "Sample Question?" by clicking "Edit Question"
 		And I "Update" question with text "BLAH GAHH" 
 		Then the message received is "Question was successfully updated."
+
+		And "Delete Q&A" is clicked
+		Then the message received is "Question was successfully deleted."

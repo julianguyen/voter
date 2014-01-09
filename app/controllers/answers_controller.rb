@@ -81,7 +81,7 @@ class AnswersController < ApplicationController
 	    @answer.destroy
 	    
 	    respond_to do |format|
-	      format.html { redirect_to answers_path(:questionid => @questionid) }
+	      format.html { redirect_to answers_path(:questionid => @questionid), notice: 'Question was successfully deleted.' }
 	      format.json { head :no_content }
 	    end
   	end

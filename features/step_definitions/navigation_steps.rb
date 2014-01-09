@@ -28,6 +28,14 @@ And(/^"(.*?)" is clicked$/) do |arg1|
   click_link(arg1)
 end
 
-Given(/^"(.*?)" is entered and "(.*?)" is clicked$/) do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+Then(/^I edit the "(.*?)" by clicking "(.*?)"$/) do |arg1, arg2|
+  element = find(".questionRow .question", :text => arg1) 
+  if arg2 == "Edit Question"
+    element.find(".editQuestion").click
+  elsif arg2 == "Answers"
+    element.find(".answers").click
+  elsif arg2 == "Delete Q&A"
+    element.find(".delete").click
+  end
 end
+

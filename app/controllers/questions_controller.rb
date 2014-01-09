@@ -81,7 +81,7 @@ class QuestionsController < ApplicationController
 	    end
 	    
 	    respond_to do |format|
-	      format.html { redirect_to questions_path }
+	      format.html { redirect_to questions_path, notice: 'Question was successfully deleted.' }
 	      format.json { head :no_content }
 	    end
   	end
