@@ -28,7 +28,7 @@ And(/^"(.*?)" is clicked$/) do |arg1|
   click_link(arg1)
 end
 
-Then(/^I edit the "(.*?)" by clicking "(.*?)" in "(.*?)"$/) do |arg1, arg2, arg3|
+Then(/^I modify the "(.*?)" by clicking "(.*?)" in "(.*?)"$/) do |arg1, arg2, arg3|
   if arg3 == "Answers"
     element = find(".answerRow .answer", :text => arg1) 
     if arg2 == "Edit Answer"

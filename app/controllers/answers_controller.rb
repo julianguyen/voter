@@ -21,13 +21,13 @@ class AnswersController < ApplicationController
     	@answer = Answer.new(params[:answer])
 
 	    respond_to do |format|
-	    	if Answer.where(:answer => @answer.answer.strip).exists?
+	    	if Answer.where(:questionid => @questionid, :answer => @answer.answer.strip).exists?
     			format.html { redirect_to answers_path(:questionid => @answer.questionid), notice: "This answer already exists." }
     			format.json { render json: @question.errors, status: :unprocessable_entity }
 	    	elsif @answer.answer == "" || @answer.answer.length > 250
 	    		format.html { redirect_to answers_path(:questionid => @answer.questionid), notice: 'This answer is not between 1-250 characters.'}
 		    	format.json { render json: @answer.errors, status: :unprocessable_entity }
-		    elsif Answer.where(:answer => @answer.answer).exists?
+		    elsif Answer.where(:questionid => @questionid, :answer => @answer.answer).exists?
 		    	format.html { redirect_to answers_path(:questionid => @answer.questionid), notice: 'This answer already exists.'}
 		    	format.json { render json: @answer.errors, status: :unprocessable_entity }
 		    else 
@@ -81,7 +81,7 @@ class AnswersController < ApplicationController
 	    @answer.destroy
 	    
 	    respond_to do |format|
-	      format.html { redirect_to answers_path(:questionid => @questionid), notice: 'Question was successfully deleted.' }
+	      format.html { redirect_to answers_path(:questionid => @questionid), notice: 'Answer was successfully deleted.' }
 	      format.json { head :no_content }
 	    end
   	end
