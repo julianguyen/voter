@@ -12,15 +12,13 @@
 <% @questions.each do |q| %>
 	<tr class="questionRow">
 		<td class="question">
-			<div>
-			   <%= q.question %> 
+			<%= q.question %> 
 
-   	    	   <%= link_to 'Answers', answers_path(:questionid => q.id), :class => "answers" %>
-	
-			   <%= link_to 'Edit Question', edit_question_path(:id => q.id, :type => "edit"), :class => "editQuestion" %>
+	    	<%= link_to 'Answers', answers_path(:questionid => q.id), :class => "answers" %>
 
-			   <%= link_to 'Delete Q&A', q, method: :delete, :class => "delete" %>
-			</div>   
+			<%= link_to 'Edit Question', edit_question_path(:id => q.id, :type => "edit"), :class => "editQuestion" %>
+
+			<%= link_to 'Delete Q&A', q, method: :delete, :class => "delete" %>  
      	</td>
 	</tr> 
 <% end %>

@@ -10,11 +10,16 @@
 
 <table>
 <% @answers.each do |a| %>
-	<tr>
-		<td><%= Question.where(:id => a.questionid).first.question %></td>
-		<td><%= a.answer %></td>
-		<td><%= link_to 'Edit Answer', edit_answer_path(:id => a.id, :questionid => a.questionid, :type => "edit") %></td>
-		<td><%= link_to 'Delete Answer', a, method: :delete %></td>
+	<tr class="answerRow">
+		<td class="answer">
+			<%= Question.where(:id => a.questionid).first.question %>
+			
+			<%= a.answer %>
+			
+			<%= link_to 'Edit Answer', edit_answer_path(:id => a.id, :questionid => a.questionid, :type => "edit"), :class => "editAnswer" %>
+			
+			<%= link_to 'Delete Answer', a, method: :delete, :class => "delete" %>
+		</td>
 	</tr>
 <% end %>
 </table>

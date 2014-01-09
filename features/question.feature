@@ -1,22 +1,26 @@
-Feature: Add question
-    In order to create a question, the user must fill in the form
+Feature: Add/modify questions and answers
+    In order to add/modify questions and answers, the user must fill in the form
 
     Scenario: Creates a valid question
         Given I am on the Add Question page
-        And I "Create" question with text "Sample Question?"
+        And I update "question_question" field with text "Sample Question?" and click the button "Create"
         And I see message "Question was successfully created."
 		And an answer is created with the text "Random answer"
 		Then the message received is "Answer was successfully created."
 		
 		Given I click on the Question page
 		And "Answers" is clicked
+		And I edit the "Random answer" by clicking "Edit Answer" in "Answers"
+		And I update "answer_answer" field with text "BLAH BLAH" and click the button "Update"
+		Then the message received is "Answer was successfully updated."
+
 		And "Add an answer" is clicked
 		And an answer is created with the text "Random thing"
 		Then the message received is "Answer was successfully created."
 
 		And "All Questions" is clicked
-		And I edit the "Sample Question?" by clicking "Edit Question"
-		And I "Update" question with text "BLAH GAHH" 
+		And I edit the "Sample Question?" by clicking "Edit Question" in "Questions"
+		And I update "question_question" field with text "BLAH GAHH" and click the button "Update"
 		Then the message received is "Question was successfully updated."
 
 		And "Delete Q&A" is clicked
