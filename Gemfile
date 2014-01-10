@@ -27,10 +27,10 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'webrat'#, '0.7.1'
+  gem 'cucumber-rails'
 end
 
 group :test do 
-  gem 'cucumber-rails', require: false
   gem 'ci_reporter', '1.8.0'
 end
 
