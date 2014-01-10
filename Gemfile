@@ -44,3 +44,5 @@ end
 
 # To use debugger
 # gem 'debugger'
+
+gem 'ci_reporter', '1.8.0', group: :test
