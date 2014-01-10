@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Voting" tests="1" time="0.010752" failures="0" errors="0" skipped="0">
+  <testcase name="Voting (PENDING)" time="0.010113">
+  </testcase>
+  <system-out>
+  </system-out>
+  <system-err>
+  </system-err>
+</testsuite>

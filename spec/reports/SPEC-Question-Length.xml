@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Question Length" tests="3" time="0.032237" failures="0" errors="0" skipped="0">
+  <testcase name="Question Length should fail character count greater than 250" time="0.02521">
+  </testcase>
+  <testcase name="Question Length should fail character count less than 1" time="0.002472">
+  </testcase>
+  <testcase name="Question Length have character count between 1 and 250" time="0.004142">
+  </testcase>
+  <system-out>
+  </system-out>
+  <system-err>
+  </system-err>
+</testsuite>

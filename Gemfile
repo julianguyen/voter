@@ -24,10 +24,14 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem "rspec-rails", ">= 2.0.1"
-  gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'capybara'
   gem 'webrat'#, '0.7.1'
+end
+
+group :test do 
+  gem 'cucumber-rails', require: false
+  gem 'ci_reporter', '1.8.0'
 end
 
 # To use ActiveModel has_secure_password
@@ -45,4 +49,4 @@ end
 # To use debugger
 # gem 'debugger'
 
-gem 'ci_reporter', '1.8.0', group: :test
+

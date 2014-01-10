@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="VotesController Vote message" tests="2" time="0.032264" failures="0" errors="0" skipped="0">
+  <testcase name="VotesController Vote message Should acknowledge vote submission" time="0.021628">
+  </testcase>
+  <testcase name="VotesController Vote message Should indicate error when vote was not speicifed" time="0.010191">
+  </testcase>
+  <system-out>
+  </system-out>
+  <system-err>
+  </system-err>
+</testsuite>

@@ -4,4 +4,7 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+require 'ci/reporter/rake/rspec'     # use this if you're using RSpec
+require 'ci/reporter/rake/cucumber'  # use this if you're using Cucumber
+
 Voter::Application.load_tasks
